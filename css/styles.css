@@ -19,3 +19,23 @@ h5 {
 .card {
     min-width: 500px;
 }
+
+#filters-title {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+    padding-bottom: 0px;
+}
+
+
+select {
+    background-color: rgba(0,0,0,.055);
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+select:hover {
+    background-color: rgba(0,0,0,.11);
+    border: 1px solid gray;
+}

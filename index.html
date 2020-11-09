@@ -14,7 +14,12 @@
         <div class="card bg-light">
             <div class="card-header">Enter Image URL</div>
             <div class="card-body">
-                <h5 class="card-title">CSS</h5>
+                <div class="input-group mb-3">
+                    <input id="img-url" type="text" class="form-control" placeholder="https://picsum.photos/500" aria-label="Image URL" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button id="enter-url" type="button" class="btn btn-outline-secondary">Enter</button>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -39,51 +44,120 @@
         
         <div class="card bg-light">
             <div class="card-header">CSS Photo Styler</div>
+            <div id="filters-title" class="card-body">
+                <h5 class="card-title">Filters</h5>
+            </div>
         </div>
         <div class="card-group">
                   <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Filters</h5>
-                      <h6 class="card-title">Blur:
-                        <select id="blur">
-                            <option>Amount</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </h6>
-                    <h6 class="card-title">Brightness:
-                        <select id="brightness">
-                            <option>Amount</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </h6>
+                        <h6 class="card-title">Blur:
+                            <select id="blur">
+                                <option value="">Amount</option>
+                                <option value="2px">1</option>
+                                <option value="4px">2</option>
+                                <option value="6px">3</option>
+                                <option value="8px">4</option>
+                                <option value="10px">5</option>
+                            </select>
+                        </h6>
+                        <h6 class="card-title">Brightness:
+                            <select id="brightness">
+                                <option value="">Amount</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>
+                        </h6>
+                        <h6 class="card-title">Contrast:
+                            <select id="contrast">
+                                <option value="">Amount</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>
+                        </h6>
                     </div>
-                  </div>
-                  <div class="card">
+                </div>
+                <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                        <h6 class="card-title">Grayscale:
+                            <select id="grayscale">
+                                <option value="">Amount</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>
+                        </h6>
+                        <h6 class="card-title">Hue Rotate:
+                            <select id="hue-rotate">
+                                <option value="">Amount</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>
+                        </h6>
+                        <h6 class="card-title">Invert:
+                            <select id="invert">
+                                <option value="">Amount</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>
+                        </h6>
                     </div>
                     <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
+                        <button id="submit-btn" type="button" class="btn btn-outline-secondary">Apply Changes</button>
+                        <button id="reset-btn" type="button" class="btn btn-outline-secondary">Reset</button>
                     </div>
-                  </div>
-                  <div class="card">
+                </div>
+                <div class="card">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                        <h6 class="card-title">Opacity:
+                            <select id="opacity">
+                                <option value="">Amount</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>
+                        </h6>
+                        <h6 class="card-title">Saturate:
+                            <select id="saturate">
+                                <option value="">Amount</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>
+                        </h6>
+                        <h6 class="card-title">Sepia:
+                            <select id="sepia">
+                                <option value="">Amount</option>
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>
+                        </h6>
                     </div>
-                    
-                  </div>
+                </div>
         </div>
         
+        <!-- Leave copy to clipboard card for later.
         <hr>
         
         <div id="copy-card" class="card bg-light">
@@ -96,6 +170,7 @@
                 <h5 class="card-title">Inline HTML</h5>
             </div>
         </div>
+        -->
         
         <footer>
             <hr />
