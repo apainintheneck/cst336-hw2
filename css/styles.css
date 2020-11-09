@@ -8,11 +8,11 @@ body {
     max-width: 1000px;
 }
 
-.card-title {
+h6 {
     text-align: left;
 }
 
-.img-desc {
+h5 {
     text-align: center;
 }
 
