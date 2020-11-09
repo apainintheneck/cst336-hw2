@@ -1,0 +1,21 @@
+#original-img, #edited-img {
+    max-width: 400px;
+    max-height: 400px;
+    margin-top: 20px;
+}
+
+body {
+    max-width: 1000px;
+}
+
+.card-title {
+    text-align: left;
+}
+
+.img-desc {
+    text-align: center;
+}
+
+.card {
+    min-width: 500px;
+}
