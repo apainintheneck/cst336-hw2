@@ -59,6 +59,7 @@ $(document).ready(function(){
     function resetStyles(){
         for(var index in filterStyles){
             filterStyles[index] = "";
+            $("#" + index).val("");
         }
         
         $("#edited-img").css("filter", "none");
