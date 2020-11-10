@@ -7,6 +7,7 @@ $(document).ready(function(){
     var imgSrc = "https://picsum.photos/500";
     var cssStyles = "";
     var inlineHTML = "";
+    //Create dict with CSS filter attributes.
     var filterStyles = {
         "blur": "",
         "brightness": "",
@@ -45,7 +46,8 @@ $(document).ready(function(){
     function imageUrlError(url){
         $("#img-url").val("");
         
-        $("#imgErrAlert").html("<b>Error:</b> Unable to load img at url: " + url);
+        $("#imgErrAlert").html("<b>Error:</b> Unable to load image at url: " + url
+            + "<br>Try another one.");
         $("#imgErrAlert").show();
     }
     
@@ -58,7 +60,7 @@ $(document).ready(function(){
             return;
         }
         
-        let timeout = 3000;
+        let timeout = 5000;
         var timedOut = false, timer;
         var img = new Image();
         img.onerror = img.onabort = function() {
@@ -80,9 +82,11 @@ $(document).ready(function(){
         }, timeout); 
     }
     
+    //Applies style changes to image and builds CSS and HTML based upon those styles.
     function applyStyles(){
         let styleStr = "";
         
+        //Loop through filterStyles dict and add each non-empty style to string.
         for(var index in filterStyles){
             let inputVal = $("#" + index).val();
        
@@ -94,12 +98,14 @@ $(document).ready(function(){
             }
         }
         
+        //Apply CSS changes to image.
         $("#edited-img").css("filter", styleStr);
         
         buildCSS(styleStr);
         buildInlineHTML();
     }
     
+    //Reset styles applied to image, CSS and HTML strings, error alerts, and all dropdown menus.
     function resetStyles(){
         for(var index in filterStyles){
             filterStyles[index] = "";
@@ -110,8 +116,11 @@ $(document).ready(function(){
         
         buildCSS("");
         buildInlineHTML();
+        
+        $("#imgErrAlert").hide();
     }
     
+    //Create CSS string to copy to clipboard.
     function buildCSS(filterStyles){
         if(filterStyles !== ""){
             cssStyles = "filter:" + filterStyles + ";";
@@ -122,6 +131,7 @@ $(document).ready(function(){
         $("#css-text").val(cssStyles);
     }
     
+    //Create HTML string to copy to clipboard.
     function buildInlineHTML(){
         let htmlFormat;
         if(cssStyles !== ""){

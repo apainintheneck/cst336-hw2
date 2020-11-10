@@ -1,3 +1,4 @@
+/*Images fill 400x400px box withou breaking aspect ratio with a small border.*/
 #original-img, #edited-img {
     max-width: 400px;
     max-height: 400px;
@@ -25,6 +26,7 @@ h5 {
     min-width: 500px;
 }
 
+/*Centers title in heading space.*/
 #filters-title {
     margin-top: 5px;
     margin-bottom: 0px;
@@ -32,7 +34,7 @@ h5 {
     padding-bottom: 0px;
 }
 
-
+/*Darkens slightly the background and border of dropdown menus.*/
 select {
     background-color: rgba(0,0,0,.055);
     background-clip: border-box;
@@ -40,6 +42,7 @@ select {
     border-radius: .25rem;
 }
 
+/*Darkens slightly the backgrand and border of dropdown menus when the mouse hovers over them.*/
 select:hover {
     background-color: rgba(0,0,0,.11);
     border: 1px solid gray;

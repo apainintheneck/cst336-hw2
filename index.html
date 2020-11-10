@@ -6,11 +6,11 @@
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.11.0/underscore-min.js"></script>
         <script src="js/main.js"></script>
     </head>
     <body class="text-center mx-auto">
         
+        <!--Enter Image URL Card-->
         <div class="card bg-light">
             <div class="card-header">Enter Image URL</div>
             <div class="card-body">
@@ -23,12 +23,14 @@
             </div>
         </div>
         
+        <!--Image Error Alert-->
         <div id="imgErrAlert" class="alert alert-secondary alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         </div>
         
         <hr>
         
+        <!--Before and after images-->
         <div class="row row-cols-1 row-cols-md-2">
             <div class="card" >
                 <img id="original-img" class="card-img-top mx-auto" src="https://picsum.photos/500" alt="Original Image">
@@ -46,6 +48,10 @@
         
         <hr>
         
+        <!--
+        Filter Menus: The values for each filter are hard coded into the option value.
+        Also includes the "apply changes" and "reset" buttons.
+        -->
         <div class="card bg-light">
             <div class="card-header">CSS Photo Styler</div>
             <div id="filters-title" class="card-body">
@@ -171,9 +177,10 @@
 
         <hr>
         
+        <!--Copy to clipboard-->
         <div class="row row-cols-1 row-cols-md-2">
             <div id="copy-card" class="card bg-light">
-                <div class="card-header">Copy Inline HTML</div>
+                <div class="card-header">Copy HTML w/ Inline Styles</div>
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <input id="html-text" type="text" class="form-control" aria-label="Image URL" aria-describedby="basic-addon2" readonly>
