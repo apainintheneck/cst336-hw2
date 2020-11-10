@@ -144,6 +144,8 @@ $(document).ready(function(){
         $("#css-text").val(cssStyles);
     }
     
+    buildInlineHTML(); //Build first time with the default image address.
+    
     //Create HTML string to copy to clipboard.
     function buildInlineHTML(){
         let htmlFormat;

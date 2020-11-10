@@ -207,7 +207,7 @@
         <!--Copy to clipboard-->
         <div class="row row-cols-1 row-cols-md-2">
             <div id="copy-card" class="card bg-light">
-                <div class="card-header">Copy HTML w/ Inline Styles</div>
+                <div class="card-header">Copy HTML w/ Inline Style</div>
                 <div class="card-body">
                     <div class="input-group mb-3">
                         <input id="html-text" type="text" class="form-control" aria-label="Image URL" aria-describedby="basic-addon2" readonly>
