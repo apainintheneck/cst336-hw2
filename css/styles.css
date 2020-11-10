@@ -14,7 +14,7 @@ body {
     max-width: 1000px;
 }
 
-h6 {
+h6, .modal-body {
     text-align: left;
 }
 
@@ -46,4 +46,8 @@ select {
 select:hover {
     background-color: rgba(0,0,0,.11);
     border: 1px solid gray;
+}
+
+.modal-header {
+    background-color: rgba(0,0,0,.055);
 }

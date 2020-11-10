@@ -6,9 +6,35 @@
         <link href="css/styles.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
     </head>
     <body class="text-center mx-auto">
+        
+        <!--
+        Introduction Modal that is called on opening the page and
+        when the "?" button is clicked.
+        -->
+        <div class="modal" id="introModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">filters</h1>
+                    </div>
+                    <div class="modal-body">
+                        Welcome to <b>filter</b> which allows you to test out CSS filters on images and generate the equivalent HTML and CSS.
+                        <br><hr>
+                        <h5 class="modal-title">Instructions</h5>
+                        <hr>
+                        <ol type="circle">
+                            <li>Enter a valid image url.</li>
+                            <li>Apply filters.</li>
+                            <li>Copy HTML or CSS to clipboard.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <!--Enter Image URL Card-->
         <div class="card bg-light">
@@ -50,7 +76,7 @@
         
         <!--
         Filter Menus: The values for each filter are hard coded into the option value.
-        Also includes the "apply changes" and "reset" buttons.
+        Also includes the "apply changes", "reset", and "?" buttons.
         -->
         <div class="card bg-light">
             <div class="card-header">CSS Photo Styler</div>
@@ -137,6 +163,7 @@
                     <div class="card-footer">
                         <button id="submit-btn" type="button" class="btn btn-outline-secondary">Apply Changes</button>
                         <button id="reset-btn" type="button" class="btn btn-outline-secondary">Reset</button>
+                        <button id="info-btn" type="button" class="btn btn-outline-secondary">?</button>
                     </div>
                 </div>
                 <div class="card">

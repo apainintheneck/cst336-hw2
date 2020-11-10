@@ -1,12 +1,18 @@
 /*global $*/
 /*global Image*/
 $(document).ready(function(){
-    $("#imgErrAlert").hide();
+    $("#imgErrAlert").hide(); //Hide alert on startup.
+    
+    //Show intro modal on startup for new users.
+    if(!sessionStorage.prevUser){
+        $("#introModal").modal("show");
+        sessionStorage.prevUser = true;
+    }
 
     //Global variables
     var imgSrc = "https://picsum.photos/500";
-    var cssStyles = "";
-    var inlineHTML = "";
+    var cssStyles = ""; //Holds CSS clipboard text.
+    var inlineHTML = ""; //Holds HTMl clipboard text.
     //Create dict with CSS filter attributes.
     var filterStyles = {
         "blur": "",
@@ -24,14 +30,21 @@ $(document).ready(function(){
     $("#enter-url").click(testImage);
     $("#submit-btn").click(applyStyles);
     $("#reset-btn").click(resetStyles);
+    $("#info-btn").click(function(){
+        //Show intro modal.
+        $("#introModal").modal("show");
+    });
     $("#copy-css").click(function(){
+        //Copy CSS textbox
         $("#css-text").select();
         document.execCommand("copy");
     });
     $("#copy-html").click(function(){
+        //Copy HTML textbox
         $("#html-text").select();
         document.execCommand("copy");
     });
+    
     
     //Functions
     function changeImage(url){
