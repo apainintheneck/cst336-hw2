@@ -2,7 +2,9 @@
 $(document).ready(function(){
     
     //Global variables
-    var defaultImgSrc = "https://picsum.photos/500";
+    const defaultImgSrc = "https://picsum.photos/500";
+    var imgSrc = defaultImgSrc;
+    var cssStr = "";
     var filterStyles = {
         "blur": "",
         "brightness": "",
@@ -39,21 +41,21 @@ $(document).ready(function(){
     }
     
     function applyStyles(){
-        let styleStr = "";
+        cssStr = "";
         
         for(var index in filterStyles){
             let inputVal = $("#" + index).val();
        
             if(inputVal !== ""){
                 filterStyles[index] = "(" + inputVal + ")";
-                styleStr += index + filterStyles[index] + " ";
+                cssStr += index + filterStyles[index] + " ";
             } else {
                 filterStyles[index] = "";
             }
         }
         
-        alert("Style string: " + styleStr);
-        $("#edited-img").css("filter", styleStr);
+        alert("Style string: " + cssStr);
+        $("#edited-img").css("filter", cssStr);
     }
     
     function resetStyles(){
