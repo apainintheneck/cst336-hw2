@@ -1,9 +1,9 @@
 /*global $*/
+/*global Image*/
 $(document).ready(function(){
     
     //Global variables
-    const defaultImgSrc = "https://picsum.photos/500";
-    var imgSrc = defaultImgSrc;
+    var imgSrc = "https://picsum.photos/500";
     var cssStyles = "";
     var inlineHTML = "";
     var filterStyles = {
@@ -19,27 +19,50 @@ $(document).ready(function(){
     };
     
     //Event listeners
-    $("#enter-url").click(changeImage);
+    $("#enter-url").click(testImage);
     $("#submit-btn").click(applyStyles);
     $("#reset-btn").click(resetStyles);
     
     //Functions
-    function changeImage(){
-        //Check image url 
-        let url = $("#img-url").val();
+    function changeImage(url){
+        $("#original-img").attr("src", url);
+        $("#edited-img").attr("src", url);
         
-        if(url !== ""){
-            $("#original-img").attr("src", url);
-            $("#edited-img").attr("src", url);
-        }
+        imgSrc = url;
     }
     
-    function imageError(){
-        alert( "Error: Failed to load image URL." );
+    function imageUrlError(url){
+        $('#img-url').val("");
         
-        $("#original-img").attr("src", defaultImgSrc);
-        $("#edited-img").attr("src", defaultImgSrc);
+        
     }
+    
+    function testImage() {
+        //Check image url 
+        let url = $("#img-url").val();
+        if(url === "") return;
+        
+        let timeout = 5000;
+        var timedOut = false, timer;
+        var img = new Image();
+        img.onerror = img.onabort = function() {
+            if (!timedOut) {
+                clearTimeout(timer);
+                imageUrlError(url);
+            }
+        };
+        img.onload = function() {
+            if (!timedOut) {
+                clearTimeout(timer);
+                changeImage(url);
+            }
+        };
+        img.src = url;
+        timer = setTimeout(function() {
+            timedOut = true;
+            imageUrlError(url);
+    }, timeout); 
+}
     
     function applyStyles(){
         let styleStr = "";
@@ -55,7 +78,6 @@ $(document).ready(function(){
             }
         }
         
-        alert("Style string: " + styleStr);
         $("#edited-img").css("filter", styleStr);
         
         buildCSS(styleStr);
