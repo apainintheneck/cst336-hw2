@@ -1,7 +1,8 @@
 /*global $*/
 /*global Image*/
 $(document).ready(function(){
-    
+    $("#imgErrAlert").hide();
+
     //Global variables
     var imgSrc = "https://picsum.photos/500";
     var cssStyles = "";
@@ -22,6 +23,14 @@ $(document).ready(function(){
     $("#enter-url").click(testImage);
     $("#submit-btn").click(applyStyles);
     $("#reset-btn").click(resetStyles);
+    $("#copy-css").click(function(){
+        $("#css-text").select();
+        document.execCommand("copy");
+    });
+    $("#copy-html").click(function(){
+        $("#html-text").select();
+        document.execCommand("copy");
+    });
     
     //Functions
     function changeImage(url){
@@ -29,20 +38,27 @@ $(document).ready(function(){
         $("#edited-img").attr("src", url);
         
         imgSrc = url;
+        $("#imgErrAlert").hide();
+        buildInlineHTML();
     }
     
     function imageUrlError(url){
-        $('#img-url').val("");
+        $("#img-url").val("");
         
-        
+        $("#imgErrAlert").html("<b>Error:</b> Unable to load img at url: " + url);
+        $("#imgErrAlert").show();
     }
     
+    //testImage() based upon: https://stackoverflow.com/a/9714891
     function testImage() {
         //Check image url 
         let url = $("#img-url").val();
-        if(url === "") return;
+        if(url === ""){
+            $("#imgErrAlert").hide();
+            return;
+        }
         
-        let timeout = 5000;
+        let timeout = 3000;
         var timedOut = false, timer;
         var img = new Image();
         img.onerror = img.onabort = function() {
@@ -61,8 +77,8 @@ $(document).ready(function(){
         timer = setTimeout(function() {
             timedOut = true;
             imageUrlError(url);
-    }, timeout); 
-}
+        }, timeout); 
+    }
     
     function applyStyles(){
         let styleStr = "";
@@ -102,6 +118,8 @@ $(document).ready(function(){
         } else {
             cssStyles = "";
         }
+        
+        $("#css-text").val(cssStyles);
     }
     
     function buildInlineHTML(){
@@ -114,9 +132,11 @@ $(document).ready(function(){
         
         inlineHTML = "";
         
-        for(var str in htmlFormat){
-            inlineHTML += str;
+        for(let i = 0; i < htmlFormat.length; i++){
+            inlineHTML += htmlFormat[i];
         }
+        
+        $("#html-text").val(inlineHTML);
     }
     
 })
