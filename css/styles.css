@@ -51,3 +51,8 @@ select:hover {
 .modal-header {
     background-color: rgba(0,0,0,.055);
 }
+
+#upload-label {
+    text-align: left;
+    color: gray;
+}

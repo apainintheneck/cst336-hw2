@@ -1,5 +1,6 @@
 /*global $*/
 /*global Image*/
+/*global URL*/
 $(document).ready(function(){
     $("#imgErrAlert").hide(); //Hide alert on startup.
     
@@ -25,11 +26,33 @@ $(document).ready(function(){
         "saturate": "",
         "sepia": "",
     };
+    var isUpload = false;
     
     //Event listeners
     $("#enter-url").on("submit", function(event) {
         event.preventDefault();
-        testImage();
+        
+        //Check image url 
+        let url = $("#img-url").val();
+        if(url === ""){
+            $("#imgErrAlert").hide();
+            return;
+        }
+        
+        testImageUrl(url);
+    });
+    $("#upload-img").on("change", function(){
+        if($(this).prop('files').length > 0){
+            $("#upload-label").text($(this)[0].files[0].name);
+        } else {
+            $("#upload-label").text("Choose file to upload...");
+        }
+    });
+    $("#upload-btn").click(function() {
+        if($("#upload-img").prop('files').length > 0){
+            let url = URL.createObjectURL($("#upload-img")[0].files[0]);
+            testImageUrl(url);
+        }
     });
     $("#submit-btn").click(applyStyles);
     $("#reset-btn").click(resetStyles);
@@ -67,15 +90,8 @@ $(document).ready(function(){
         $("#imgErrAlert").show();
     }
     
-    //testImage() based upon: https://stackoverflow.com/a/9714891
-    function testImage() {
-        //Check image url 
-        let url = $("#img-url").val();
-        if(url === ""){
-            $("#imgErrAlert").hide();
-            return;
-        }
-        
+    //testImageUrl() based upon: https://stackoverflow.com/a/9714891
+    function testImageUrl(url){
         let timeout = 5000;
         var timedOut = false, timer;
         var img = new Image();
