@@ -40,12 +40,12 @@
         <div class="card bg-light">
             <div class="card-header">Enter Image URL</div>
             <div class="card-body">
-                <div class="input-group mb-3">
+                <form id="enter-url" class="input-group mb-3">
                     <input id="img-url" type="text" class="form-control" placeholder="default image from https://picsum.photos/" aria-label="Image URL" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button id="enter-url" type="button" class="btn btn-outline-secondary">Enter</button>
+                        <button type="submit" class="btn btn-outline-secondary">Enter</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         

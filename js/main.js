@@ -27,7 +27,10 @@ $(document).ready(function(){
     };
     
     //Event listeners
-    $("#enter-url").click(testImage);
+    $("#enter-url").on("submit", function(event) {
+        event.preventDefault();
+        testImage();
+    });
     $("#submit-btn").click(applyStyles);
     $("#reset-btn").click(resetStyles);
     $("#info-btn").click(function(){
