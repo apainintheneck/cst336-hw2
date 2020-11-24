@@ -100,7 +100,7 @@ $(document).ready(function(){
     }
     
     function imageUploadError(){
-        $("#imgErrAlert").html("<b>Error:</b> Unable to load uploaded image: " + $("#upload-img")[0].files[0].name
+        $("#imgErrAlert").html("<b>Error:</b> Unable to load file: " + $("#upload-img")[0].files[0].name
             + "<br>Try another one.");
         $("#imgErrAlert").show();
         
