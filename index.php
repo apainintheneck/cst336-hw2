@@ -49,7 +49,7 @@
                 <div class="input-group mb-3 col">
                   <div class="custom-file">
                     <input id="upload-img" type="file" class="custom-file-input" id="inputGroupFile02">
-                    <label id="upload-label" class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file to upload...</label>
+                    <label id="upload-label" class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose image to upload...</label>
                   </div>
                   <div class="input-group-append">
                     <button id="upload-btn" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>

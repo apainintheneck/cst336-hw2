@@ -46,7 +46,7 @@ $(document).ready(function(){
         if($(this).prop('files').length > 0){
             $("#upload-label").html($(this)[0].files[0].name);
         } else {
-            $("#upload-label").html("Choose file to upload...");
+            $("#upload-label").html("Choose image to upload...");
         }
     });
     $("#upload-btn").click(function() {
@@ -54,7 +54,7 @@ $(document).ready(function(){
             let url = URL.createObjectURL($("#upload-img")[0].files[0]);
             testImageUrl(url, imageUploadError(), function() { isUpload = true; changeImage(); });
         } else {
-            $("#upload-label").html("Choose file to upload...");
+            $("#upload-label").html("Choose image to upload...");
         }
     });
     $("#submit-btn").click(applyStyles);
@@ -100,11 +100,11 @@ $(document).ready(function(){
     }
     
     function imageUploadError(){
-        $("#imgErrAlert").html("<b>Error:</b> Unable to load file: " + $("#upload-img")[0].files[0].name
+        $("#imgErrAlert").html("<b>Error:</b> Unable to load uploaded image: " + $("#upload-img")[0].files[0].name
             + "<br>Try another one.");
         $("#imgErrAlert").show();
         
-        $("#upload-label").html("Choose file to upload...");
+        $("#upload-label").html("Choose image to upload...");
     }
     
     //testImageUrl() based upon: https://stackoverflow.com/a/9714891
