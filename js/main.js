@@ -14,6 +14,8 @@ $(document).ready(function(){
     var imgSrc = "https://picsum.photos/500";
     var cssStyles = ""; //Holds CSS clipboard text.
     var inlineHTML = ""; //Holds HTMl clipboard text.
+    var isUpload = false; //Boolean for if the image was uploaded.
+    var fileName = ""; //Holds the file name of the uploaded image.
     //Create dict with CSS filter attributes.
     var filterStyles = {
         "blur": "",
@@ -26,7 +28,6 @@ $(document).ready(function(){
         "saturate": "",
         "sepia": "",
     };
-    var isUpload = false;
     
     //Event listeners
     $("#enter-url").on("submit", function(event) {
@@ -39,19 +40,21 @@ $(document).ready(function(){
             return;
         }
         
-        testImageUrl(url);
+        testImageUrl(url, imageUrlError(), function() { isUpload = false; changeImage(); });
     });
     $("#upload-img").on("change", function(){
         if($(this).prop('files').length > 0){
-            $("#upload-label").text($(this)[0].files[0].name);
+            $("#upload-label").html($(this)[0].files[0].name);
         } else {
-            $("#upload-label").text("Choose file to upload...");
+            $("#upload-label").html("Choose file to upload...");
         }
     });
     $("#upload-btn").click(function() {
         if($("#upload-img").prop('files').length > 0){
             let url = URL.createObjectURL($("#upload-img")[0].files[0]);
-            testImageUrl(url);
+            testImageUrl(url, imageUploadError(), function() { isUpload = true; changeImage(); });
+        } else {
+            $("#upload-label").html("Choose file to upload...");
         }
     });
     $("#submit-btn").click(applyStyles);
@@ -73,44 +76,59 @@ $(document).ready(function(){
     
     
     //Functions
-    function changeImage(url){
-        $("#original-img").attr("src", url);
-        $("#edited-img").attr("src", url);
+    function changeImage(){
+        $("#original-img").attr("src", imgSrc);
+        $("#edited-img").attr("src", imgSrc);
         
-        imgSrc = url;
         $("#imgErrAlert").hide();
+        
+        //Update file name if image was uploaded.
+        if(isUpload){
+            fileName = $("#upload-img")[0].files[0].name;
+            $("#upload-label").html(fileName);
+        }
+        
         buildInlineHTML();
     }
     
-    function imageUrlError(url){
-        $("#img-url").val("");
-        
-        $("#imgErrAlert").html("<b>Error:</b> Unable to load image at url: " + url
+    function imageUrlError(){
+        $("#imgErrAlert").html("<b>Error:</b> Unable to load image at url: " + $("#img-url").val()
             + "<br>Try another one.");
         $("#imgErrAlert").show();
+        
+        $("#img-url").val("");
+    }
+    
+    function imageUploadError(){
+        $("#imgErrAlert").html("<b>Error:</b> Unable to load file: " + $("#upload-img")[0].files[0].name
+            + "<br>Try another one.");
+        $("#imgErrAlert").show();
+        
+        $("#upload-label").html("Choose file to upload...");
     }
     
     //testImageUrl() based upon: https://stackoverflow.com/a/9714891
-    function testImageUrl(url){
+    function testImageUrl(url, err, res){
         let timeout = 5000;
         var timedOut = false, timer;
         var img = new Image();
         img.onerror = img.onabort = function() {
             if (!timedOut) {
                 clearTimeout(timer);
-                imageUrlError(url);
+                err();
             }
         };
         img.onload = function() {
             if (!timedOut) {
                 clearTimeout(timer);
-                changeImage(url);
+                imgSrc = url;
+                res();
             }
         };
         img.src = url;
         timer = setTimeout(function() {
             timedOut = true;
-            imageUrlError(url);
+            err();
         }, timeout); 
     }
     
@@ -168,10 +186,20 @@ $(document).ready(function(){
     //Create HTML string to copy to clipboard.
     function buildInlineHTML(){
         let htmlFormat;
-        if(cssStyles !== ""){
-            htmlFormat = ["<img src='", imgSrc, "' style='", cssStyles, "'>"];
+        let src;
+        
+        //If image is uploaded, use filename for src instead of generated url.
+        if(isUpload){
+            src = fileName;
         } else {
-            htmlFormat = ["<img src='", imgSrc, "'>"];
+            src = imgSrc;
+        }
+        
+        //Only insert styles into html tag if they have been added by the user.
+        if(cssStyles !== ""){
+            htmlFormat = ["<img src='", src, "' style='", cssStyles, "'>"];
+        } else {
+            htmlFormat = ["<img src='", src, "'>"];
         }
         
         inlineHTML = "";
